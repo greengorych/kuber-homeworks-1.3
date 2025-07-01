@@ -60,7 +60,7 @@ env:
 
 5. Манифест отдельного Pod multitool [network-multitool.yml](network-multitool.yml)
 
-Дем онстрация работы отдельного Pod multitool:
+Демонстрация работы отдельного Pod multitool:
 
 ![alt text](images/image-3.png)
 
@@ -89,7 +89,7 @@ env:
 ![alt text](images/image-6.png)
 
 3. Манифест Service [netology-svc-init.yml](netology-svc-init.yml)
-4. Демонстрация работы Pod 
+4. Демонстрация работы Pod:
 
 ![alt text](images/image-7.png)
 
