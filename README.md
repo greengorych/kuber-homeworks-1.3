@@ -30,6 +30,48 @@
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 
+### Ответ
+
+1. Манифест Deployment приложения [netology-deployment.yml](netology-deployment.yml)
+
+Проблема возникала из-за конфликта портов контейнеров в Pod. Решение - переопределить порты для multitool через переменные окрудения:
+
+```yaml
+env:
+- name: HTTP_PORT
+    value: "8080"
+- name: HTTPS_PORT
+    value: "8443"
+```
+
+2. Демонстрация количества Pod до изменения:
+
+![alt text](images/image.png)
+
+3. Демострация количества Pod после увеличения до 2:
+
+![alt text](images/image-1.png)
+
+4. Манифест Service [netology-svc.yml](netology-svc.yml) с доступом до приложений nginx и multitool.
+
+Демонстрация работающего сервиса:
+
+![alt text](images/image-2.png)
+
+5. Манифест отдельного Pod multitool [network-multitool.yml](network-multitool.yml)
+
+Дем онстрация работы отдельного Pod multitool:
+
+![alt text](images/image-3.png)
+
+Демонстрация проверки доступа к `nginx` через сервис с помощью `curl` из отдельного Pod multitool:
+
+![alt text](images/image-4.png)
+
+Демонстрация проверки доступа к `multitool` через сервис с помощью `curl` из отдельного Pod multitool:
+
+![alt text](images/image-5.png)
+
 ------
 
 ### Задание 2. Создать Deployment и обеспечить старт основного контейнера при выполнении условий
@@ -38,6 +80,20 @@
 2. Убедиться, что nginx не стартует. В качестве Init-контейнера взять busybox.
 3. Создать и запустить Service. Убедиться, что Init запустился.
 4. Продемонстрировать состояние пода до и после запуска сервиса.
+
+### Ответ
+
+1. Манифест Deployment приложения [netology-deployment-init.yml](netology-deployment-init.yml)
+2. Демонстрация работы Pod до запуска сервиса:
+
+![alt text](images/image-6.png)
+
+3. Манифест Service [netology-svc-init.yml](netology-svc-init.yml)
+4. Демонстрация работы Pod 
+
+![alt text](images/image-7.png)
+
+![alt text](images/image-8.png)
 
 ------
 
